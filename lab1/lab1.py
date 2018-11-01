@@ -137,7 +137,7 @@ def policy_improvement(env, discount_factor=1.0):
     
     Args:
         env: The OpenAI envrionment.
-        policy_eval_fn: Policy Evaluation function that takes 3 arguments:
+        policy_eval: Policy Evaluation function that takes 3 arguments:
             policy, env, discount_factor.
         discount_factor: gamma discount factor.
         
@@ -155,11 +155,31 @@ def policy_improvement(env, discount_factor=1.0):
         
         V = policy_eval(policy, env, discount_factor)
         
-        # YOUR CODE HERE
-        raise NotImplementedError()
+        policy_stable = True
+        
+        for s in range(env.nS):
+            
+            aargmax, amax = -1, float('-inf')
+            
+            for a in range(env.nA):
+                val = 0
+                for p, t, r, d in env.P[s][a]:
+                    val += r + discount_factor*V[t]
+                
+                if val > amax:
+                    amax = val
+                    aargmax = a
+                    
+            p = np.zeros(env.nA)
+            p[aargmax] = 1
+            
+            policy_stable &= np.allclose(p, policy[s, :].reshape(-1))
+            policy[s, :] = p
+            
+        if policy_stable:
+            break
     
     return policy, V
-
 
 # In[ ]:
 
