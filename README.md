@@ -1,8 +1,7 @@
-# reinforcement-learning-labs
+# Labs and Homeworks for Reinforcement Learning course, MSc AI @ UvA 2018/2019.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-Labs and Homeworks for Reinforcement Learning course, MSc AI @ UvA 2018/2019.  
+  
 Solutions and implementation from [Davide Belli](https://github.com/davide-belli) and [Gabriele Cesa](https://github.com/Gabri95).  
 Total Grade: 102.75 %
 
